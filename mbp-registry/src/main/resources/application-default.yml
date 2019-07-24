@@ -1,0 +1,15 @@
+eureka:
+  instance:
+    preferIpAddress: true
+    hostname: localhost
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+      
+mbp:
+  log:
+    level: INFO
+    open_console: true

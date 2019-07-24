@@ -1,0 +1,21 @@
+server:
+  port: 8761
+
+spring:
+  application:
+    name: mbp-registry
+
+eureka:
+  instance:
+    preferIpAddress: false
+
+    leaseRenewalIntervalInSeconds: 5
+    leaseExpirationDurationInSeconds: 5
+  server:
+    enableSelfPreservation: false
+    evictionIntervalTimerInMs: 5000
+    responseCacheUpdateIntervalMs: 5000
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+
