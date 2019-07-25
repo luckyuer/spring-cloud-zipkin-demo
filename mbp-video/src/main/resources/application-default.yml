@@ -92,6 +92,8 @@ mbp:
     log:
         level: INFO
         open_console: true
+    website:
+        url: https://robinye.com
 
 #Apollo config
 #app:
