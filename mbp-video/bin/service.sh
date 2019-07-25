@@ -89,7 +89,7 @@ if [[ "$1" == "start" ]]; then
 
     if [[ ! -f "$PID_FILE" ]]; then
         echo -e ${started} | tee -a ${ACCESS_LOG}
-        nohup java ${JAVA_OPTIONS} -jar ${APP_HOME}/lib/mbp-video-${APP_VERSION}.jar 1>> ${ACCESS_LOG} 2>> ${ERROR_LOG} 2>&1 &echo $! > ${PID_FILE}
+        nohup java ${JAVA_OPTIONS} -jar ${APP_HOME}/lib/mbp-${APP_NAME}-${APP_VERSION}.jar 1>> ${ACCESS_LOG} 2>> ${ERROR_LOG} 2>&1 &echo $! > ${PID_FILE}
 
         sleep 10
         tail -n 300 ${ACCESS_LOG}

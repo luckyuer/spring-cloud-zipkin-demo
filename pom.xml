@@ -18,7 +18,7 @@
     <modules>
         <module>mbp-base</module>
         <module>mbp-video</module>
-        <module>mbp-zipkin-server</module>
+        <module>mbp-zipkin</module>
         <module>mbp-registry</module>
         <module>mbp-user</module>
     </modules>

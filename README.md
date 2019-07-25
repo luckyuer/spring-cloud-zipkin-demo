@@ -62,13 +62,13 @@ $ mvn clean package
 
 $ mkdir -p /opt/app/mbp
 $ mkdir -p /opt/app/mbp/logs
-$ cp spring-cloud-zipkin-demo/mbp-zipkin-server/target/mbp-zipkin-server-1.0.0.tar.gz /opt/app/mbp/
+$ cp spring-cloud-zipkin-demo/mbp-zipkin/target/mbp-zipkin-1.0.0.tar.gz /opt/app/mbp/
 $ cp spring-cloud-zipkin-demo/mbp-registry/target/mbp-registry-1.0.0.tar.gz /opt/app/mbp/
 $ cp spring-cloud-zipkin-demo/mbp-video/target/mbp-video-1.0.0.tar.gz /opt/app/mbp/
 $ cp spring-cloud-zipkin-demo/mbp-user/target/mbp-user-1.0.0.tar.gz /opt/app/mbp/
 
 $ cd /opt/app/mbp/
-$ tar zxvf mbp-zipkin-server-1.0.0.tar.gz
+$ tar zxvf mbp-zipkin-1.0.0.tar.gz
 $ tar zxvf mbp-registry-1.0.0.tar.gz
 $ tar zxvf mbp-video-1.0.0.tar.gz
 $ tar zxvf mbp-user-1.0.0.tar.gz
