@@ -91,7 +91,7 @@ if [[ "$1" == "start" ]]; then
 
     if [[ ! -f "$PID_FILE" ]]; then
         echo -e ${started} | tee -a ${ACCESS_LOG}
-        nohup KAFKA_BOOTSTRAP_SERVERS=${KAFKA_BOOTSTRAP_SERVERS} ES_HOSTS=${ES_HOSTS} java ${JAVA_OPTIONS} -jar ${APP_HOME}/lib/mbp-${APP_NAME}-${APP_VERSION}.jar 1>> ${ACCESS_LOG} 2>> ${ERROR_LOG} 2>&1 &echo $! > ${PID_FILE}
+        nohup java ${JAVA_OPTIONS} -jar ${APP_HOME}/lib/mbp-${APP_NAME}-${APP_VERSION}.jar -DKAFKA_BOOTSTRAP_SERVERS=${KAFKA_BOOTSTRAP_SERVERS} -DES_HOSTS=${ES_HOSTS} 1>> ${ACCESS_LOG} 2>> ${ERROR_LOG} 2>&1 &echo $! > ${PID_FILE}
 
         sleep 10
         tail -n 300 ${ACCESS_LOG}
