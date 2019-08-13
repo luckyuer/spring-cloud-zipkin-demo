@@ -10,7 +10,7 @@ package com.robinye.mbp.base.exception;
 import org.springframework.http.HttpStatus;
 
 /**
- * 内容运营系统错误代码接口
+ * 系统错误代码接口
  *
  * @author yetianbing
  * @version 1.0.0

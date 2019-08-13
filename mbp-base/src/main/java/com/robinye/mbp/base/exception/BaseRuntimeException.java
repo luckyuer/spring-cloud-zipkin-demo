@@ -8,7 +8,7 @@
 package com.robinye.mbp.base.exception;
 
 /**
- * 内容运营系统异常处理基类
+ * 系统异常处理基类
  *
  * @author yetianbing
  * @version 1.0.0
