@@ -66,10 +66,8 @@ checkEnvParam(){
 
 getUsageHint(){
   for env_name in ${ENV_LIST[@]};do
-    hint=${hint}${env_name}" or "
+    hint=${hint}${env_name}
   done
-
-  hint=${hint}"|stop|log|error"
 }
 
 checkEnvParam $2
@@ -83,53 +81,10 @@ stopped="#######################################################################
                 Application [${APP_NAME}] Stopped At  $(date)                             \n
         ##################################################################################\n"
 
-if [[ "$1" == "start" ]]; then
-    if [[ "${hasEnv}" == 0 ]]; then
-        echo ${hint}
-        exit 0
-    fi
-
-    if [[ ! -f "$PID_FILE" ]]; then
-        echo -e ${started} | tee -a ${ACCESS_LOG}
-        nohup java ${JAVA_OPTIONS} -jar ${APP_HOME}/lib/mbp-${APP_NAME}-${APP_VERSION}.jar -DKAFKA_BOOTSTRAP_SERVERS=${KAFKA_BOOTSTRAP_SERVERS} -DES_HOSTS=${ES_HOSTS} 1>> ${ACCESS_LOG} 2>> ${ERROR_LOG} 2>&1 &echo $! > ${PID_FILE}
-
-        sleep 10
-        tail -n 300 ${ACCESS_LOG}
-    else
-        echo "$APP_NAME service already started, please stop first and try again"
-    fi
-elif [[ "$1" == "stop" ]]; then
-    if [[ -f "$PID_FILE" ]]; then
-        echo -e ${stopped} | tee -a ${ACCESS_LOG}
-        cat ${PID_FILE} | xargs kill -9
-        rm ${PID_FILE}
-        echo "$APP_NAME stop : [OK]"
-    else
-        echo "$APP_NAME service not started yet, please start first and try again"
-    fi
-elif [[ "$1" == "log" ]]
-    then if [[ "$2" == "error" ]]
-      then
-       tail -f ${ERROR_LOG}
-      else
-       tail -f ${ACCESS_LOG}
-       fi
-elif [[ "$1" == "-v" ]]; then
-    echo ${APP_VERSION}
-elif [[ "$1" == "status" ]]; then
-    pid=`cat ${PID_FILE}`
-    if [[ $? -eq 0 ]]; then
-        p_status=`ps -p ${pid}`
-        if [[ $? -eq 0 ]]; then
-            echo "Application [${APP_NAME}] is running, pid : ${pid}."
-        else
-            echo "Application [${APP_NAME}] is not running."
-        fi
-    else
-        echo "Application [${APP_NAME}] is not running."
-    fi
-else
+if [[ "${hasEnv}" == 0 ]]; then
     echo ${hint}
+    exit 0
+else
+    echo -e ${started}
+    java ${JAVA_OPTIONS} -jar ${APP_HOME}/lib/mbp-${APP_NAME}-${APP_VERSION}.jar -DKAFKA_BOOTSTRAP_SERVERS=${KAFKA_BOOTSTRAP_SERVERS} -DES_HOSTS=${ES_HOSTS}
 fi
-
-
